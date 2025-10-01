@@ -19,7 +19,9 @@
                 <th>Start date</th>
                 <th>End date</th>
                 <th>Associated pizza</th>
-                <th>Actions</th>
+                <th>Details</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -34,11 +36,13 @@
                     <a th:href="@{/offers/{id}(id=${offer.id})}">
                         <button>View details</button>
                     </a>
-
+                </td>
+                <td sec:authorize="hasAuthority('ADMIN')">
                     <a th:href="@{/offers/edit/{id}(id=${offer.id})}">
                         <button>Edit offer</button>
                     </a>
-
+                </td>
+                <td sec:authorize="hasAuthority('ADMIN')">
                     <form th:action="@{/offers/delete/{id}(id=${offer.id})}" method="post" style="display:inline;">
                         <button type="submit">Delete offer</button>
                     </form>

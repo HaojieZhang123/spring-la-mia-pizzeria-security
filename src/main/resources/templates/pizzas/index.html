@@ -13,15 +13,13 @@
 
     <hr>
 
-    <div>
+    <div sec:authorize="hasAuthority('ADMIN')">
         <h3>Create a new pizza</h3>
 
         <a href="/pizzas/create">
             <button>Create Pizza</button>
         </a>
     </div>
-
-    <hr>
 
     <div>
         <h3>Search for a pizzas by name</h3>
@@ -38,7 +36,9 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Actions</th>
+                <th>Details</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -51,11 +51,13 @@
                     <a th:href="@{/pizzas/{id}(id=${pizza.id})}">
                         <button>View details</button>
                     </a>
-
+                </td>
+                <td sec:authorize="hasAuthority('ADMIN')">
                     <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}">
                         <button>Edit info</button>
                     </a>
-
+                </td>
+                <td sec:authorize="hasAuthority('ADMIN')">
                     <form th:action="@{/pizzas/delete/{id}(id=${pizza.id})}" method="post" style="display:inline;">
                         <button type="submit">Delete pizza</button>
                     </form>
