@@ -5,11 +5,12 @@ import java.util.Optional;
 import org.exercise.java.spring_la_mia_pizzeria_security.model.User;
 import org.exercise.java.spring_la_mia_pizzeria_security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DatabaseUserDetailsService {
+public class DatabaseUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
