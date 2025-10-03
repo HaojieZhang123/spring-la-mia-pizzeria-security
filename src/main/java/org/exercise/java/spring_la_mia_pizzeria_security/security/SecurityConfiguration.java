@@ -54,12 +54,10 @@ public class SecurityConfiguration {
 
     // auth provider
     @Bean
-    @SuppressWarnings("deprecation")
     DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService());
+        // authProvider.setUserDetailsService)(;
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
-
 }
